@@ -16,8 +16,15 @@ public class Reiseplanung extends JFrame {
     private JComboBox cBoxAllinclusive;
     private JLabel JLabelAnzahlPerson;
     private JTextField txtFieldAnzahl;
-    private JButton button1;
+    private JButton preisBerechnungButton;
     private JTextField txtFieldAnzahlPersonen;
+    private JLabel JLabelVerpflegung;
+    private JLabel JLabelSonderwünsche;
+    private JCheckBox meerblickCheckBox;
+    private JCheckBox terasseCheckBox;
+    private JCheckBox poolCheckBox;
+    private JCheckBox SPABereichCheckBox;
+
 
 
     public Reiseplanung(){
@@ -33,6 +40,12 @@ public class Reiseplanung extends JFrame {
         txtFieldDauer.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {dauer();}
+        });
+        preisBerechnungButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                berechnen();
+            }
         });
     }
 
@@ -56,12 +69,11 @@ public class Reiseplanung extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) { anzahl();}
 
-             private void anzahl() {
-             }
+
          });
          };
 
-             public void AnzahlPersonen(){
+             public void anzahl(){
                     try {
                         String anzahl = txtFieldAnzahlPersonen.getText().toString();
 
@@ -76,10 +88,16 @@ public class Reiseplanung extends JFrame {
                         }
                     }
 
+public void berechnen(){
+
+                 //hier dann Berechnung von Preis programmieren
+
+}
+}
 
 
 
 
-    }
+
 
 

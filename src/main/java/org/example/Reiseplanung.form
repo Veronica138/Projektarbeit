@@ -76,14 +76,6 @@
           <text value="Anzahl der Personen:"/>
         </properties>
       </component>
-      <component id="3d064" class="javax.swing.JButton" binding="button1" default-binding="true">
-        <constraints>
-          <grid row="11" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Button"/>
-        </properties>
-      </component>
       <component id="3c75c" class="javax.swing.JComboBox" binding="cBoxWohnart">
         <constraints>
           <grid row="2" column="1" row-span="2" col-span="4" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
@@ -158,6 +150,14 @@
         </constraints>
         <properties>
           <text value="SPA Bereich"/>
+        </properties>
+      </component>
+      <component id="3d064" class="javax.swing.JButton" binding="preisBerechnungButton" default-binding="true">
+        <constraints>
+          <grid row="11" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Preis Berechnung"/>
         </properties>
       </component>
     </children>

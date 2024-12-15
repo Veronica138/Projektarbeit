@@ -17,6 +17,7 @@ public class Reiseplanung extends JFrame {
     private JLabel JLabelAnzahlPerson;
     private JTextField txtFieldAnzahl;
     private JButton button1;
+    private JTextField txtFieldAnzahlPersonen;
 
 
     public Reiseplanung(){
@@ -31,30 +32,50 @@ public class Reiseplanung extends JFrame {
 
         txtFieldDauer.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                dauer();
-            }
+            public void actionPerformed(ActionEvent e) {dauer();}
         });
     }
 
-    public void dauer(){
+    public void dauer() {
 
-        try{
+        try {
 
             String dauer = txtFieldDauer.getText().toString();
 
             int Dauer = Integer.parseInt(dauer);
 
 
-
-
-
-
         } catch (Exception e) {
 
-            JOptionPane.showMessageDialog(this,"Bitte geben sie nur Zahlen ein","Ungültige Eingabe",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Bitte geben sie nur Zahlen ein", "Ungültige Eingabe", JOptionPane.WARNING_MESSAGE);
             throw new RuntimeException(e);
         }
+
+
+         txtFieldAnzahlPersonen.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) { anzahl();}
+
+             private void anzahl() {
+             }
+         });
+         };
+
+             public void AnzahlPersonen(){
+                    try {
+                        String anzahl = txtFieldAnzahlPersonen.getText().toString();
+
+
+                        // Anzahl der Personen sollen abgerufen werden
+                        int AnzahlPersonen = Integer.parseInt(anzahl);
+                    } catch (Exception e) {
+
+
+                        JOptionPane.showMessageDialog(this,"Bitte geben sie nur Zahlen ein","Ungültige Eingabe",JOptionPane.WARNING_MESSAGE);
+                        throw new RuntimeException(e);
+                        }
+                    }
+
 
 
 
@@ -62,5 +83,3 @@ public class Reiseplanung extends JFrame {
     }
 
 
-
-}

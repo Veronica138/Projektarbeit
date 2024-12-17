@@ -3,6 +3,7 @@ package org.example;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class Reiseplanung extends JFrame {
     private javax.swing.JPanel JPanel;
@@ -12,20 +13,22 @@ public class Reiseplanung extends JFrame {
     private JLabel JLabelWohnart;
     private JTextField txtFieldDauer;
     private JComboBox cBoxWohnart;
-    private JLabel JLabelallinclusive;
+    private JLabel JLabelVerpflegung;
     private JComboBox cBoxAllinclusive;
     private JLabel JLabelAnzahlPerson;
-    private JTextField txtFieldAnzahl;
-    private JButton preisBerechnungButton;
-    private JTextField txtFieldAnzahlPersonen;
-    private JLabel JLabelVerpflegung;
     private JLabel JLabelSonderwünsche;
-    private JCheckBox meerblickCheckBox;
-    private JCheckBox terasseCheckBox;
-    private JCheckBox poolCheckBox;
-    private JCheckBox SPABereichCheckBox;
+    private JCheckBox SPABereich;
+    private JCheckBox pool;
+    private JCheckBox meerblick;
+    private JCheckBox terasse;
+    private JTextField txtFieldAnzahlPersonen;
+    private JButton preisBerechnungButton;
+    private JButton buttonSpeichern;
+    private JTextArea txtAreaReisespeichern; // Neue TextArea für die Liste
+    private JButton buttonListeLoeschen; // Button zum Löschen der Liste
 
-
+    // ArrayList zum Speichern der Reisen
+    private ArrayList<String> reiseListe = new ArrayList<>();
 
     public Reiseplanung(){
 
@@ -36,68 +39,135 @@ public class Reiseplanung extends JFrame {
     setVisible(true);
 
 
-
-        txtFieldDauer.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {dauer();}
-        });
+        // Listener für Preisberechnung
         preisBerechnungButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                berechnen();
+                berechneUndZeigePreis(); // Methode zur Berechnung und Anzeige
+            }
+        });
+
+        // Button-Listener für "Reise speichern"
+        buttonSpeichern.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                speichereReise();
+            }
+        });
+
+        // Button-Listener für "Liste löschen"
+        buttonListeLoeschen.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                reiseListe.clear(); // Liste leeren
+                txtAreaReisespeichern.setText(""); // TextArea leeren
             }
         });
     }
 
-    public void dauer() {
-
+    // Methode zur Preisberechnung und Anzeige
+    private void berechneUndZeigePreis() {
         try {
+            String wohnart = (String) cBoxWohnart.getSelectedItem();
+            String allInclusive = (String) cBoxAllinclusive.getSelectedItem();
+            int dauer = Integer.parseInt(txtFieldDauer.getText());
+            int personen = Integer.parseInt(txtFieldAnzahlPersonen.getText());
 
-            String dauer = txtFieldDauer.getText().toString();
+            // Berechnung des Preises
+            double preis = berechnePreis(dauer, personen, wohnart, allInclusive);
 
-            int Dauer = Integer.parseInt(dauer);
+            // Zeige den berechneten Preis in einem Dialogfeld
+            JOptionPane.showMessageDialog(this, "Ihre ausgewählte Reise koset " + String.format("%.2f €", preis),
+                    "Preisberechnung", JOptionPane.INFORMATION_MESSAGE);
 
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Bitte geben Sie gültige Zahlen für Dauer und Personenanzahl ein.",
+                    "Ungültige Eingabe", JOptionPane.WARNING_MESSAGE);
+        }
+    }
 
-        } catch (Exception e) {
+    // Methode zur Berechnung des Preises
+    private double berechnePreis(int dauer, int personen, String wohnart, String allInclusive) {
+        double grundpreisProTag = 50.0; // Basispreis pro Tag
 
-            JOptionPane.showMessageDialog(this, "Bitte geben sie nur Zahlen ein", "Ungültige Eingabe", JOptionPane.WARNING_MESSAGE);
-            throw new RuntimeException(e);
+        // Zuschläge für Wohnart
+        switch (wohnart) {
+            case "Standard":
+                grundpreisProTag += 0;
+                break;
+            case "Deluxe":
+                grundpreisProTag += 30;
+                break;
+            case "Suite":
+                grundpreisProTag += 50;
+                break;
+            case "Penthouse":
+                grundpreisProTag += 100;
+                break;
         }
 
+        // Zuschläge für All-Inclusive
+        if (allInclusive.equals("Ja")) {
+            grundpreisProTag += 20;
+        }
 
-         txtFieldAnzahlPersonen.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) { anzahl();}
-
-
-         });
-         };
-
-             public void anzahl(){
-                    try {
-                        String anzahl = txtFieldAnzahlPersonen.getText().toString();
+        // Gesamtpreis berechnen
+        return grundpreisProTag * dauer * personen;
+    }
 
 
-                        // Anzahl der Personen sollen abgerufen werden
-                        int AnzahlPersonen = Integer.parseInt(anzahl);
-                    } catch (Exception e) {
+    // Methode zum Speichern der Reise in die Liste
+    private void speichereReise() {
+        // Fehleranzeigen zurücksetzen (alle Ausrufezeichen unsichtbar machen)
+        errorLabelDauer.setVisible(false);
+        errorLabelPersonen.setVisible(false);
 
+        try {
+            // Dauer überprüfen
+            String dauerText = txtFieldDauer.getText();
+            if (!dauerText.matches("\\d+")) { // Nur ganze Zahlen erlaubt
+                errorLabelDauer.setVisible(true); // Rotes Ausrufezeichen anzeigen
+                JOptionPane.showMessageDialog(this, "Bitte geben Sie eine gültige ganze Zahl für die Tage ein.",
+                        "Ungültige Eingabe für Dauer", JOptionPane.WARNING_MESSAGE);
+                return; // Methode verlassen
+            }
+            int dauer = Integer.parseInt(dauerText);
 
-                        JOptionPane.showMessageDialog(this,"Bitte geben sie nur Zahlen ein","Ungültige Eingabe",JOptionPane.WARNING_MESSAGE);
-                        throw new RuntimeException(e);
-                        }
-                    }
+            // Personenzahl überprüfen
+            String personenText = txtFieldAnzahlPersonen.getText();
+            if (!personenText.matches("\\d+")) { // Nur ganze Zahlen erlaubt
+                errorLabelPersonen.setVisible(true); // Rotes Ausrufezeichen anzeigen
+                JOptionPane.showMessageDialog(this, "Bitte geben Sie eine gültige ganze Zahl für die Personenzahl ein.",
+                        "Ungültige Eingabe für Personenzahl", JOptionPane.WARNING_MESSAGE);
+                return; // Methode verlassen
+            }
+            int personen = Integer.parseInt(personenText);
 
-public void berechnen(){
+            // Informationen für die Reise sammeln
+            String urlaubsort = (String) cBoxUrlaubsort.getSelectedItem();
+            String wohnart = (String) cBoxWohnart.getSelectedItem();
+            String allInclusive = (String) cBoxAllinclusive.getSelectedItem();
+            double preis = berechnePreis(dauer, personen, wohnart, allInclusive);
 
-                 //hier dann Berechnung von Preis programmieren
+            // Reiseinformationen zusammenstellen
+            String reise = "Reiseziel: " + urlaubsort +
+                    ", Wohnart: " + wohnart +
+                    ", All-Inclusive: " + allInclusive +
+                    ", Dauer: " + dauer + " Tage" +
+                    ", Personen: " + personen +
+                    ", Preis: " + String.format("%.2f €", preis);
 
-}
-}
+            // Reiseinformationen in die Liste speichern
+            reiseListe.add(reise);
 
+            // Reise zur TextArea hinzufügen (anhängen)
+            txtAreaReisespeichern.append(reise + "\n");
 
-
-
+        } catch (Exception ex) {
+            // Allgemeine Fehlermeldung als Fallback
+            JOptionPane.showMessageDialog(this, "Ein unerwarteter Fehler ist aufgetreten.",
+                    "Fehler", JOptionPane.ERROR_MESSAGE);
+        }
 
 
 

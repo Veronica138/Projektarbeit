@@ -191,8 +191,18 @@
           <grid row="1" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <foreground color="-1769428"/>
-          <text value="!"/>
+          <foreground color="-65536"/>
+          <text value="Fehler "/>
+        </properties>
+      </component>
+      <component id="9b71e" class="javax.swing.JLabel" binding="errorLabelPersonen">
+        <constraints>
+          <grid row="9" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-65536"/>
+          <labelFor value="d9140"/>
+          <text value="Fehler "/>
         </properties>
       </component>
     </children>

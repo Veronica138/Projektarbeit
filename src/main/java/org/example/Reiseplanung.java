@@ -160,11 +160,11 @@ public class Reiseplanung extends JFrame {
 
             // Reiseinformationen zusammenstellen
             String reise = "Reiseziel: " + urlaubsort +
-                    ", Wohnart: " + wohnart +
-                    ", All-Inclusive: " + allInclusive +
-                    ", Dauer: " + dauer + " Tage" +
-                    ", Personen: " + personen +
-                    ", Preis: " + String.format("%.2f €", preis);
+                    "\n Wohnart: " + wohnart +
+                    "\n All-Inclusive: " + allInclusive +
+                    "\n Dauer: " + dauer + " Tage" +
+                    "\n Personen: " + personen +
+                    "\n Preis: " + String.format("%.2f €", preis);
 
             // Reiseinformationen in die Liste speichern
             reiseListe.add(reise);

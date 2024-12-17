@@ -26,17 +26,24 @@ public class Reiseplanung extends JFrame {
     private JButton buttonSpeichern;
     private JTextArea txtAreaReisespeichern; // Neue TextArea für die Liste
     private JButton buttonListeLoeschen; // Button zum Löschen der Liste
+    private JLabel errorLabelPersonen;
+    private JLabel errorLabelDauer;
 
     // ArrayList zum Speichern der Reisen
     private ArrayList<String> reiseListe = new ArrayList<>();
 
-    public Reiseplanung(){
 
-    setTitle("Reiseplanung");
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setSize(1200,800);
-    setContentPane(JPanel);
-    setVisible(true);
+    public Reiseplanung() {
+
+        setTitle("Reiseplanung");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1200, 800);
+        setContentPane(JPanel);
+        setVisible(true);
+
+        // Fehlerlabels standardmäßig unsichtbar setzen
+        errorLabelDauer.setVisible(false);
+        errorLabelPersonen.setVisible(false);
 
 
         // Listener für Preisberechnung
@@ -86,6 +93,8 @@ public class Reiseplanung extends JFrame {
         }
     }
 
+
+
     // Methode zur Berechnung des Preises
     private double berechnePreis(int dauer, int personen, String wohnart, String allInclusive) {
         double grundpreisProTag = 50.0; // Basispreis pro Tag
@@ -118,7 +127,7 @@ public class Reiseplanung extends JFrame {
 
     // Methode zum Speichern der Reise in die Liste
     private void speichereReise() {
-        // Fehleranzeigen zurücksetzen (alle Ausrufezeichen unsichtbar machen)
+        // Fehleranzeigen zurücksetzen
         errorLabelDauer.setVisible(false);
         errorLabelPersonen.setVisible(false);
 
@@ -126,7 +135,7 @@ public class Reiseplanung extends JFrame {
             // Dauer überprüfen
             String dauerText = txtFieldDauer.getText();
             if (!dauerText.matches("\\d+")) { // Nur ganze Zahlen erlaubt
-                errorLabelDauer.setVisible(true); // Rotes Ausrufezeichen anzeigen
+                errorLabelDauer.setVisible(true); // Fehlerlabel für Dauer anzeigen
                 JOptionPane.showMessageDialog(this, "Bitte geben Sie eine gültige ganze Zahl für die Tage ein.",
                         "Ungültige Eingabe für Dauer", JOptionPane.WARNING_MESSAGE);
                 return; // Methode verlassen
@@ -136,7 +145,7 @@ public class Reiseplanung extends JFrame {
             // Personenzahl überprüfen
             String personenText = txtFieldAnzahlPersonen.getText();
             if (!personenText.matches("\\d+")) { // Nur ganze Zahlen erlaubt
-                errorLabelPersonen.setVisible(true); // Rotes Ausrufezeichen anzeigen
+                errorLabelPersonen.setVisible(true); // Fehlerlabel für Personenanzahl anzeigen
                 JOptionPane.showMessageDialog(this, "Bitte geben Sie eine gültige ganze Zahl für die Personenzahl ein.",
                         "Ungültige Eingabe für Personenzahl", JOptionPane.WARNING_MESSAGE);
                 return; // Methode verlassen
@@ -168,6 +177,8 @@ public class Reiseplanung extends JFrame {
             JOptionPane.showMessageDialog(this, "Ein unerwarteter Fehler ist aufgetreten.",
                     "Fehler", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    }
 
 
 

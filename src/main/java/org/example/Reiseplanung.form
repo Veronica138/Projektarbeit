@@ -46,6 +46,7 @@
         </constraints>
         <properties>
           <model>
+            <item value="--Auswählen--"/>
             <item value="Amsterdam"/>
             <item value="Barcelona"/>
             <item value="Berlin"/>
@@ -82,6 +83,7 @@
         </constraints>
         <properties>
           <model>
+            <item value="--Auswählen--"/>
             <item value="Einzelzimmer"/>
             <item value="Doppelzimmer"/>
             <item value="Deluxe"/>
@@ -96,6 +98,7 @@
         <properties>
           <editable value="false"/>
           <model>
+            <item value="--Auswählen--"/>
             <item value="Frühstück inbegriffen"/>
             <item value="Abendessen inbegriffen"/>
             <item value="All Inclusive"/>

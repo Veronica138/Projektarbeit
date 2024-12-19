@@ -24,6 +24,7 @@ public class Reiseplanung extends JFrame {
     private JTextField txtFieldAnzahlPersonen; //Textfeld um Personenanzahl anzugeben
     private JButton preisBerechnungButton; // Button um Preis für konfigurierte Reise auszurechnen
     private JButton buttonSpeichern; // Button zur Speicherung der akutell konfigurierten Reise
+    private JButton buttonReset;
     private JTextArea txtAreaReisespeichern; // Neue TextArea für die Liste
     private JButton buttonListeLoeschen; // Button zum Löschen der Liste
     private JLabel errorLabelPersonen; // Label um Fehler in Zeile Personen anzuzeigen
@@ -70,6 +71,39 @@ public class Reiseplanung extends JFrame {
                 txtAreaReisespeichern.setText(""); // TextArea leeren
             }
         });
+
+        // **BEGINN: Listener für "Reset"-Button**
+        buttonReset.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Textfelder zurücksetzen
+                txtFieldDauer.setText("");
+                txtFieldAnzahlPersonen.setText("");
+
+                // ComboBoxen auf den Standardwert setzen (ersten Eintrag)
+                if (cBoxUrlaubsort.getItemCount() > 0) {
+                    cBoxUrlaubsort.setSelectedIndex(0);
+                }
+                if (cBoxWohnart.getItemCount() > 0) {
+                    cBoxWohnart.setSelectedIndex(0);
+                }
+                if (cBoxAllinclusive.getItemCount() > 0) {
+                    cBoxAllinclusive.setSelectedIndex(0);
+                }
+
+                // CheckBoxen deaktivieren
+                SPABereich.setSelected(false);
+                pool.setSelected(false);
+                meerblick.setSelected(false);
+                terasse.setSelected(false);
+
+                // Fehlerlabels verbergen
+                errorLabelDauer.setVisible(false);
+                errorLabelPersonen.setVisible(false);
+
+            }
+        });
+        // **ENDE: Listener für "Reset"-Button**
     }
 
 
@@ -84,6 +118,8 @@ public class Reiseplanung extends JFrame {
         if (!dauerText.matches("\\d+")) { // Nur ganze Zahlen erlaubt
             fehlerInDauer = true;
             errorLabelDauer.setVisible(true); // Fehlerlabel für Dauer anzeigen
+        } else {
+            errorLabelDauer.setVisible(false); // Änderung: Fehlerlabel bei korrekter Eingabe unsichtbar machen
         }
 
         // Personenzahl überprüfen
@@ -91,6 +127,8 @@ public class Reiseplanung extends JFrame {
         if (!personenText.matches("\\d+")) { // Nur ganze Zahlen erlaubt
             fehlerInPersonen = true;
             errorLabelPersonen.setVisible(true); // Fehlerlabel für Personenanzahl anzeigen
+        } else {
+            errorLabelPersonen.setVisible(false); // Änderung: Fehlerlabel bei korrekter Eingabe unsichtbar machen
         }
 
         // Wenn Fehler aufgetreten sind, entsprechende Nachricht anzeigen

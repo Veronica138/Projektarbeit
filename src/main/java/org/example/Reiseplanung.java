@@ -28,6 +28,8 @@ public class Reiseplanung extends JFrame {
     private JButton buttonListeLoeschen; // Button zum Löschen der Liste
     private JLabel errorLabelPersonen;
     private JLabel errorLabelDauer;
+    private JButton buttonReset;
+    private JComboBox comboBox1;
 
     // ArrayList zum Speichern der Reisen
     private ArrayList<String> reiseListe = new ArrayList<>();
@@ -40,6 +42,17 @@ public class Reiseplanung extends JFrame {
         setSize(1200, 800);
         setContentPane(JPanel);
         setVisible(true);
+        System.out.print(comboBox1.getItemCount());
+//Combobox für Hotel erstellt und soll von der Arrayliste die Hotelnamen anzeigen
+        ArrayList<Hotel> hotels = Hotel.getHotels();
+        for (Hotel hotel : hotels){
+            this.comboBox1.addItem(hotel.Hotelnamen);
+        }
+        this.comboBox1.revalidate();
+        this.comboBox1.repaint();
+
+
+
 
         // Fehlerlabels standardmäßig unsichtbar setzen
         errorLabelDauer.setVisible(false);
@@ -156,10 +169,12 @@ public class Reiseplanung extends JFrame {
             String urlaubsort = (String) cBoxUrlaubsort.getSelectedItem();
             String wohnart = (String) cBoxWohnart.getSelectedItem();
             String allInclusive = (String) cBoxAllinclusive.getSelectedItem();
+            String hotel = (String) comboBox1.getSelectedItem();
             double preis = berechnePreis(dauer, personen, wohnart, allInclusive);
 
             // Reiseinformationen zusammenstellen
             String reise = "Reiseziel: " + urlaubsort +
+                    "\n Hotel: "+ hotel+
                     "\n Wohnart: " + wohnart +
                     "\n All-Inclusive: " + allInclusive +
                     "\n Dauer: " + dauer + " Tage" +

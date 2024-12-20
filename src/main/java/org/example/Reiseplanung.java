@@ -236,19 +236,26 @@ public class Reiseplanung extends JFrame {
             String allInclusive = (String) cBoxAllinclusive.getSelectedItem();
             double preis = berechnePreis(dauer, personen, wohnart, allInclusive);
 
-            // Reiseinformationen zusammenstellen
-            String reise = "Reiseziel: " + urlaubsort +
-                    "\n Wohnart: " + wohnart +
-                    "\n All-Inclusive: " + allInclusive +
-                    "\n Dauer: " + dauer + " Tage" +
-                    "\n Personen: " + personen +
-                    "\n Preis: " + String.format("%.2f €", preis);
+            // Reiseinformationen zusammenstellen, sodass alle Zeilen linksbündig sind
+            String reise = String.format(
+                    "Urlaubsziel:\n" +
+                            "Ort: %s\n" +
+                            "Wohnart: %s\n" +
+                            "Verpflegung: %s\n" +
+                            "Dauer: %d Tage\n" +
+                            "Personen: %d\n" +
+                            "Preis: %.2f €",
+                    urlaubsort, wohnart, allInclusive, dauer, personen, preis);
+
 
             // Reiseinformationen in die Liste speichern
             reiseListe.add(reise);
 
-            // Reise zur TextArea hinzufügen (anhängen)
-            txtAreaReisespeichern.append(reise + "\n");
+            // TextArea aktualisieren
+            txtAreaReisespeichern.setText(""); // TextArea zurücksetzen
+            for (int i = 0; i < reiseListe.size(); i++) {
+                txtAreaReisespeichern.append((i + 1) + ". " + reiseListe.get(i) + "\n\n"); // Nummerierung und Leerzeile
+            }
 
         } catch (Exception ex) {
             // Allgemeine Fehlermeldung als Fallback

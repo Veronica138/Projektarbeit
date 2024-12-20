@@ -226,7 +226,7 @@ public class Reiseplanung extends JFrame {
                 JOptionPane.showMessageDialog(this,
                         "Bitte geben Sie eine gültige ganze Zahl für die Personenanzahl ein.",
                         "Ungültige Eingabe für Personenanzahl", JOptionPane.WARNING_MESSAGE);
-                return; // Methode verlassen
+                return;
             }
             int personen = Integer.parseInt(personenText);
 

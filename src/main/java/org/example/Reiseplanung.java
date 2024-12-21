@@ -274,31 +274,32 @@ public class Reiseplanung extends JFrame {
 
     // Methode zum Speichern der Reise in die Liste
     private void speichereReise() {
-        // Informationen sammeln und speichern (keine Änderungen)
-            try {
-                // Dauer und Personenanzahl prüfen und Reise speichern
-                String dauerText = txtFieldDauer.getText();
-                int dauer = Integer.parseInt(dauerText);
+        try {
+            // Dauer und Personenanzahl prüfen
+            String dauerText = txtFieldDauer.getText();
+            int dauer = Integer.parseInt(dauerText);
+            String personenText = txtFieldAnzahlPersonen.getText();
+            int personen = Integer.parseInt(personenText);
 
-                String personenText = txtFieldAnzahlPersonen.getText();
-                int personen = Integer.parseInt(personenText);
+            // Alle benötigten Felder abrufen
+            String urlaubsort = (String) cBoxUrlaubsort.getSelectedItem();
+            String wohnart = (String) cBoxWohnart.getSelectedItem();
+            String allInclusive = (String) cBoxAllinclusive.getSelectedItem();
+            String hotel = (String) comboBox1.getSelectedItem();
 
-                String urlaubsort = (String) cBoxUrlaubsort.getSelectedItem();
-                String wohnart = (String) cBoxWohnart.getSelectedItem();
-                String allInclusive = (String) cBoxAllinclusive.getSelectedItem();
-                double preis = berechnePreis(dauer, personen, wohnart, allInclusive);
+            // Preis berechnen
+            double preis = berechnePreis(dauer, personen, wohnart, allInclusive);
 
-
-            // Reiseinformationen zusammenstellen mit „Ort:“ vor dem Namen
+            // Reiseinformationen zusammenstellen
             String reise = String.format(
-                    "Urlaubsziel:\nOrt: %s\n" +
+                    "Urlaubsziel: %s\n" +
                             "Wohnart: %s\n" +
-                            "Hotel: %s\n"  +
-                            "All-Inclusive: %s\n" +
+                            "Hotel: %s\n" +
+                            "Verpflegung: %s\n" +
                             "Dauer: %d Tage\n" +
                             "Personen: %d\n" +
                             "Preis: %.2f €",
-                    urlaubsort, wohnart, allInclusive, dauer, personen, preis);
+                    urlaubsort, wohnart, hotel, allInclusive, dauer, personen, preis);
 
             // Reiseinformationen in die Liste speichern
             reiseListe.add(reise);
@@ -309,14 +310,17 @@ public class Reiseplanung extends JFrame {
                 txtAreaReisespeichern.append((i + 1) + ". " + reiseListe.get(i) + "\n\n"); // Nummerierung und Leerzeile
             }
 
+            // Erfolgsmeldung
+            JOptionPane.showMessageDialog(this, "Reise erfolgreich gespeichert!",
+                    "Erfolg", JOptionPane.INFORMATION_MESSAGE);
 
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this,
+                    "Bitte geben Sie gültige Zahlen für Dauer und Personenanzahl ein.",
+                    "Ungültige Eingabe", JOptionPane.WARNING_MESSAGE);
         } catch (Exception ex) {
-            // Allgemeine Fehlermeldung als Fallback
-            JOptionPane.showMessageDialog(this, "Ein unerwarteter Fehler ist aufgetreten.",
+            JOptionPane.showMessageDialog(this, "Ein unerwarteter Fehler ist aufgetreten: " + ex.getMessage(),
                     "Fehler", JOptionPane.ERROR_MESSAGE);
         }
     }
-    }
-
-
-
+}

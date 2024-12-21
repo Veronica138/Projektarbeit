@@ -47,7 +47,7 @@ public class Reiseplanung extends JFrame {
 
         //Combobox für Hotel erstellt und soll von der Arrayliste die Hotelnamen anzeigen
         ArrayList<Hotel> hotels = Hotel.getHotels();
-        for (Hotel hotel : hotels){
+        for (Hotel hotel : hotels) {
             this.comboBox1.addItem(hotel.Hotelnamen);
         }
 
@@ -85,12 +85,78 @@ public class Reiseplanung extends JFrame {
                 txtAreaReisespeichern.setText(""); // TextArea leeren
             }
         });
-    }
 
+        buttonReset.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                txtFieldDauer.setText("");
+                txtFieldAnzahlPersonen.setText("");
+
+                if (cBoxUrlaubsort.getItemCount() > 0) {
+                    cBoxUrlaubsort.setSelectedIndex(0);
+                }
+                if (cBoxWohnart.getItemCount() > 0) {
+                    cBoxWohnart.setSelectedIndex(0);
+                }
+                if (cBoxAllinclusive.getItemCount() > 0) {
+                    cBoxAllinclusive.setSelectedIndex(0);
+                }
+
+                SPABereich.setSelected(false);
+                pool.setSelected(false);
+                meerblick.setSelected(false);
+                terasse.setSelected(false);
+
+                errorLabelDauer.setVisible(false);
+                errorLabelPersonen.setVisible(false);
+            }
+        });
+    }
 
 
     // Methode zur Preisberechnung und Anzeige
     private void berechneUndZeigePreis() {
+        // Variablen zur Fehlererfassung
+        boolean fehlerInDauer = false;
+        boolean fehlerInPersonen = false;
+
+        // Dauer überprüfen
+        String dauerText = txtFieldDauer.getText();
+        if (!dauerText.matches("\\d+")) { // Nur ganze Zahlen erlaubt
+            fehlerInDauer = true;
+            errorLabelDauer.setVisible(true); // Fehlerlabel für Dauer anzeigen
+        } else {
+            errorLabelDauer.setVisible(false); // Änderung: Fehlerlabel bei korrekter Eingabe unsichtbar machen
+        }
+
+        // Personenzahl überprüfen
+        String personenText = txtFieldAnzahlPersonen.getText();
+        if (!personenText.matches("\\d+")) { // Nur ganze Zahlen erlaubt
+            fehlerInPersonen = true;
+            errorLabelPersonen.setVisible(true); // Fehlerlabel für Personenanzahl anzeigen
+        } else {
+            errorLabelPersonen.setVisible(false); // Änderung: Fehlerlabel bei korrekter Eingabe unsichtbar machen
+        }
+
+        // Wenn Fehler aufgetreten sind, entsprechende Nachricht anzeigen
+        if (fehlerInDauer && fehlerInPersonen) {
+            JOptionPane.showMessageDialog(this,
+                    "Bitte geben Sie gültige Zahlen für die Dauer und die Personenanzahl ein.",
+                    "Ungültige Eingaben", JOptionPane.WARNING_MESSAGE);
+            return; // Methode verlassen
+        } else if (fehlerInDauer) {
+            JOptionPane.showMessageDialog(this,
+                    "Bitte geben Sie eine gültige ganze Zahl für die Dauer ein.",
+                    "Ungültige Eingabe für Dauer", JOptionPane.WARNING_MESSAGE);
+            return; // Methode verlassen
+        } else if (fehlerInPersonen) {
+            JOptionPane.showMessageDialog(this,
+                    "Bitte geben Sie eine gültige ganze Zahl für die Personenanzahl ein.",
+                    "Ungültige Eingabe für Personenanzahl", JOptionPane.WARNING_MESSAGE);
+            return; // Methode verlassen
+        }
+
+        // Wenn keine Fehler aufgetreten sind, Informationen verarbeiten
         try {
             String wohnart = (String) cBoxWohnart.getSelectedItem();
             String allInclusive = (String) cBoxAllinclusive.getSelectedItem();
@@ -101,7 +167,7 @@ public class Reiseplanung extends JFrame {
             double preis = berechnePreis(dauer, personen, wohnart, allInclusive);
 
             // Zeige den berechneten Preis in einem Dialogfeld
-            JOptionPane.showMessageDialog(this, "Ihre ausgewählte Reise koset " + String.format("%.2f €", preis),
+            JOptionPane.showMessageDialog(this, "Ihre ausgewählte Reise kostet " + String.format("%.2f €", preis),
                     "Preisberechnung", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (NumberFormatException ex) {
@@ -109,7 +175,6 @@ public class Reiseplanung extends JFrame {
                     "Ungültige Eingabe", JOptionPane.WARNING_MESSAGE);
         }
     }
-
 
 
     // Methode zur Berechnung des Preises
@@ -209,37 +274,19 @@ public class Reiseplanung extends JFrame {
 
     // Methode zum Speichern der Reise in die Liste
     private void speichereReise() {
-        // Fehleranzeigen zurücksetzen
-        errorLabelDauer.setVisible(false);
-        errorLabelPersonen.setVisible(false);
+        // Informationen sammeln und speichern (keine Änderungen)
+            try {
+                // Dauer und Personenanzahl prüfen und Reise speichern
+                String dauerText = txtFieldDauer.getText();
+                int dauer = Integer.parseInt(dauerText);
 
-        try {
-            // Dauer überprüfen
-            String dauerText = txtFieldDauer.getText();
-            if (!dauerText.matches("\\d+")) { // Nur ganze Zahlen erlaubt
-                errorLabelDauer.setVisible(true); // Fehlerlabel für Dauer anzeigen
-                JOptionPane.showMessageDialog(this, "Bitte geben Sie eine gültige ganze Zahl für die Tage ein.",
-                        "Ungültige Eingabe für Dauer", JOptionPane.WARNING_MESSAGE);
-                return; // Methode verlassen
-            }
-            int dauer = Integer.parseInt(dauerText);
+                String personenText = txtFieldAnzahlPersonen.getText();
+                int personen = Integer.parseInt(personenText);
 
-            // Personenzahl überprüfen
-            String personenText = txtFieldAnzahlPersonen.getText();
-            if (!personenText.matches("\\d+")) { // Nur ganze Zahlen erlaubt
-                errorLabelPersonen.setVisible(true); // Fehlerlabel für Personenanzahl anzeigen
-                JOptionPane.showMessageDialog(this, "Bitte geben Sie eine gültige ganze Zahl für die Personenzahl ein.",
-                        "Ungültige Eingabe für Personenzahl", JOptionPane.WARNING_MESSAGE);
-                return; // Methode verlassen
-            }
-            int personen = Integer.parseInt(personenText);
-
-            // Informationen für die Reise sammeln
-            String urlaubsort = (String) cBoxUrlaubsort.getSelectedItem();
-            String wohnart = (String) cBoxWohnart.getSelectedItem();
-            String allInclusive = (String) cBoxAllinclusive.getSelectedItem();
-            String hotel = (String) comboBox1.getSelectedItem();
-            double preis = berechnePreis(dauer, personen, wohnart, allInclusive);
+                String urlaubsort = (String) cBoxUrlaubsort.getSelectedItem();
+                String wohnart = (String) cBoxWohnart.getSelectedItem();
+                String allInclusive = (String) cBoxAllinclusive.getSelectedItem();
+                double preis = berechnePreis(dauer, personen, wohnart, allInclusive);
 
 
             // Reiseinformationen zusammenstellen mit „Ort:“ vor dem Namen

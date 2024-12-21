@@ -314,10 +314,6 @@ public class Reiseplanung extends JFrame {
             JOptionPane.showMessageDialog(this, "Reise erfolgreich gespeichert!",
                     "Erfolg", JOptionPane.INFORMATION_MESSAGE);
 
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this,
-                    "Bitte geben Sie gültige Zahlen für Dauer und Personenanzahl ein.",
-                    "Ungültige Eingabe", JOptionPane.WARNING_MESSAGE);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Ein unerwarteter Fehler ist aufgetreten: " + ex.getMessage(),
                     "Fehler", JOptionPane.ERROR_MESSAGE);

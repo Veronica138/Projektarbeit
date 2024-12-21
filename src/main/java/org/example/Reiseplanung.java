@@ -43,15 +43,17 @@ public class Reiseplanung extends JFrame {
         setContentPane(JPanel);
         setVisible(true);
         System.out.print(comboBox1.getItemCount());
-//Combobox für Hotel erstellt und soll von der Arrayliste die Hotelnamen anzeigen
+
+
+        //Combobox für Hotel erstellt und soll von der Arrayliste die Hotelnamen anzeigen
         ArrayList<Hotel> hotels = Hotel.getHotels();
         for (Hotel hotel : hotels){
             this.comboBox1.addItem(hotel.Hotelnamen);
         }
+
+
         this.comboBox1.revalidate();
         this.comboBox1.repaint();
-
-
 
 
         // Fehlerlabels standardmäßig unsichtbar setzen
@@ -85,6 +87,8 @@ public class Reiseplanung extends JFrame {
         });
     }
 
+
+
     // Methode zur Preisberechnung und Anzeige
     private void berechneUndZeigePreis() {
         try {
@@ -110,7 +114,45 @@ public class Reiseplanung extends JFrame {
 
     // Methode zur Berechnung des Preises
     private double berechnePreis(int dauer, int personen, String wohnart, String allInclusive) {
-        double grundpreisProTag = 50.0; // Basispreis pro Tag
+        double grundpreisProTag = 0.0; // Startwert für den Preis
+
+        // Preise basierend auf dem ausgewählten Ort
+        String urlaubsort = (String) cBoxUrlaubsort.getSelectedItem();
+        switch (urlaubsort) {
+            case "Amsterdam":
+                grundpreisProTag = 130.0;
+                break;
+            case "Barcelona":
+                grundpreisProTag = 130.0;
+                break;
+            case "Berlin":
+                grundpreisProTag = 100.0;
+                break;
+            case "Dubai":
+                grundpreisProTag = 200.0;
+                break;
+            case "London":
+                grundpreisProTag = 175.0;
+                break;
+            case "Madrid":
+                grundpreisProTag = 130.0;
+                break;
+            case "Mailand":
+                grundpreisProTag = 135.0;
+                break;
+            case "München":
+                grundpreisProTag = 115.0;
+                break;
+            case "New York":
+                grundpreisProTag = 225.0;
+                break;
+            case "Paris":
+                grundpreisProTag = 180.0;
+                break;
+            case "Rom":
+                grundpreisProTag = 140.0;
+                break;
+        }
 
         // Zuschläge für Wohnart
         switch (wohnart) {
@@ -128,15 +170,42 @@ public class Reiseplanung extends JFrame {
                 break;
         }
 
-        // Zuschläge für All-Inclusive
-        if (allInclusive.equals("Ja")) {
-            grundpreisProTag += 20;
+        // Zuschläge für Verpflegung
+        switch (allInclusive) {
+            case "Frühstück inbegriffen":
+                grundpreisProTag += 10;
+                break;
+            case "Abendessen inbegriffen":
+                grundpreisProTag += 20;
+                break;
+            case "Halbpension":
+                grundpreisProTag += 25;
+                break;
+            case "Vollpension":
+                grundpreisProTag += 40;
+                break;
+            case "All Inclusive":
+                grundpreisProTag += 60;
+                break;
+        }
+
+        // Zuschläge für Sonderwünsche
+        if (SPABereich.isSelected()) {
+            grundpreisProTag += 10; // Preis für SPA pro Tag
+        }
+        if (pool.isSelected()) {
+            grundpreisProTag += 15; // Preis für Pool pro Tag
+        }
+        if (meerblick.isSelected()) {
+            grundpreisProTag += 20; // Preis für Meerblick pro Tag
+        }
+        if (terasse.isSelected()) {
+            grundpreisProTag += 5; // Preis für Terrasse pro Tag
         }
 
         // Gesamtpreis berechnen
         return grundpreisProTag * dauer * personen;
     }
-
 
     // Methode zum Speichern der Reise in die Liste
     private void speichereReise() {
@@ -172,20 +241,27 @@ public class Reiseplanung extends JFrame {
             String hotel = (String) comboBox1.getSelectedItem();
             double preis = berechnePreis(dauer, personen, wohnart, allInclusive);
 
-            // Reiseinformationen zusammenstellen
-            String reise = "Reiseziel: " + urlaubsort +
-                    "\n Hotel: "+ hotel+
-                    "\n Wohnart: " + wohnart +
-                    "\n All-Inclusive: " + allInclusive +
-                    "\n Dauer: " + dauer + " Tage" +
-                    "\n Personen: " + personen +
-                    "\n Preis: " + String.format("%.2f €", preis);
+
+            // Reiseinformationen zusammenstellen mit „Ort:“ vor dem Namen
+            String reise = String.format(
+                    "Urlaubsziel:\nOrt: %s\n" +
+                            "Wohnart: %s\n" +
+                            "Hotel: %s\n"  +
+                            "All-Inclusive: %s\n" +
+                            "Dauer: %d Tage\n" +
+                            "Personen: %d\n" +
+                            "Preis: %.2f €",
+                    urlaubsort, wohnart, allInclusive, dauer, personen, preis);
 
             // Reiseinformationen in die Liste speichern
             reiseListe.add(reise);
 
-            // Reise zur TextArea hinzufügen (anhängen)
-            txtAreaReisespeichern.append(reise + "\n");
+            // TextArea aktualisieren
+            txtAreaReisespeichern.setText(""); // TextArea zurücksetzen
+            for (int i = 0; i < reiseListe.size(); i++) {
+                txtAreaReisespeichern.append((i + 1) + ". " + reiseListe.get(i) + "\n\n"); // Nummerierung und Leerzeile
+            }
+
 
         } catch (Exception ex) {
             // Allgemeine Fehlermeldung als Fallback

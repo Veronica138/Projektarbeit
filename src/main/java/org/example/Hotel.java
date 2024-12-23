@@ -8,10 +8,18 @@ public class Hotel {
     public double HotelPreis;
     public boolean AllInclusive;
 
+    public Hotel(){
+        initObjekte();
+    }
     public Hotel (String Hotelnamen, double HotelPreis, boolean AllIclusive){
         this.Hotelnamen = Hotelnamen;
         this.HotelPreis = HotelPreis;
         this.AllInclusive=AllIclusive;
+    }
+    private void initObjekte(){
+        this.Hotelnamen = "Standard Hotel";
+        this.HotelPreis = 0.0;
+        this.AllInclusive = false;
     }
 
     public static ArrayList<Hotel> getHotels(){

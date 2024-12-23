@@ -115,7 +115,7 @@ public class Reiseplanung extends JFrame {
 
 
     // Methode zur Preisberechnung und Anzeige
-    private void berechneUndZeigePreis() {
+    public void berechneUndZeigePreis() {
         // Variablen zur Fehlererfassung
         boolean fehlerInDauer = false;
         boolean fehlerInPersonen = false;
@@ -217,6 +217,19 @@ public class Reiseplanung extends JFrame {
             case "Rom":
                 grundpreisProTag = 140.0;
                 break;
+
+        }
+        String Hotel = (String) comboBox1.getSelectedItem();
+        switch(Hotel){
+            case "Mercy Hotel":
+                grundpreisProTag += 55.99;
+                break;
+            case "Olive Hotel":
+                grundpreisProTag += 20.99;
+                break;
+            case "Modern Hotel":
+                grundpreisProTag += 60.59;
+                break;
         }
 
         // Zuschläge für Wohnart
@@ -286,6 +299,19 @@ public class Reiseplanung extends JFrame {
             String wohnart = (String) cBoxWohnart.getSelectedItem();
             String allInclusive = (String) cBoxAllinclusive.getSelectedItem();
             String hotel = (String) comboBox1.getSelectedItem();
+            String Hotel = (String) comboBox1.getSelectedItem();
+
+            //Sonderwünsche sammeln
+            ArrayList<String>sonderwuensche = new ArrayList<>();
+            if (SPABereich.isSelected())sonderwuensche.add ("SPABereich");
+            if (pool.isSelected())sonderwuensche.add("Pool");
+            if ( meerblick.isSelected())sonderwuensche.add("Meerblick");
+            if ( terasse.isSelected())sonderwuensche.add(" Terasse");
+
+            // Überprüft ob die Liste der Sonderwünsche leer ist
+            // Wenn die Liste leer ist, wird "Keine Sonderwünsche" als Standardwert zugewiesen
+            // Sonst werden die Sonderwünsche in die Liste hinzugefügt
+            String sonderwuenscheText = sonderwuensche.isEmpty()?"Keine Sonderwünsche":String.join(",",sonderwuensche);
 
             // Preis berechnen
             double preis = berechnePreis(dauer, personen, wohnart, allInclusive);
@@ -296,10 +322,11 @@ public class Reiseplanung extends JFrame {
                             "Wohnart: %s\n" +
                             "Hotel: %s\n" +
                             "Verpflegung: %s\n" +
+                            "Sonderwünsche: %s\n"+
                             "Dauer: %d Tage\n" +
                             "Personen: %d\n" +
                             "Preis: %.2f €",
-                    urlaubsort, wohnart, hotel, allInclusive, dauer, personen, preis);
+                    urlaubsort, wohnart, hotel, allInclusive, sonderwuensche, dauer, personen, preis);
 
             // Reiseinformationen in die Liste speichern
             reiseListe.add(reise);

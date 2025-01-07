@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Reiseplanung extends JFrame {
     // Hauptkomponenten des UI
     private javax.swing.JPanel JPanel;
+    private javax.swing.JLabel JLabel;
 
     // Labels (für die Beschriftung von Eingabefeldern und Bereichen)
     private JLabel JLabelDauer;         // Label für die Eingabe der Reisedauer.

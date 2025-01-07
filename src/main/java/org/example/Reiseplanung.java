@@ -6,32 +6,49 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class Reiseplanung extends JFrame {
+    // Hauptkomponenten des UI
     private javax.swing.JPanel JPanel;
-    private javax.swing.JLabel JLabel;
-    private JComboBox cBoxUrlaubsort;
-    private JLabel JLabelDauer;
-    private JLabel JLabelWohnart;
-    private JTextField txtFieldDauer;
-    private JComboBox cBoxWohnart;
-    private JLabel JLabelVerpflegung;
-    private JComboBox cBoxAllinclusive;
-    private JLabel JLabelAnzahlPerson;
-    private JLabel JLabelSonderwünsche;
-    private JCheckBox SPABereich;
-    private JCheckBox pool;
-    private JCheckBox meerblick;
-    private JCheckBox terasse;
-    private JTextField txtFieldAnzahlPersonen;
-    private JButton preisBerechnungButton;
-    private JButton buttonSpeichern;
-    private JTextArea txtAreaReisespeichern; // Neue TextArea für die Liste
-    private JButton buttonListeLoeschen; // Button zum Löschen der Liste
-    private JLabel errorLabelPersonen;
-    private JLabel errorLabelDauer;
-    private JButton buttonReset;
-    private JComboBox comboBox1;
-    private JLabel JLabelName;
-    private JLabel JLabelHotel;
+
+    // Labels (für die Beschriftung von Eingabefeldern und Bereichen)
+    private JLabel JLabelDauer;         // Label für die Eingabe der Reisedauer.
+    private JLabel JLabelWohnart;       // Label für die Auswahl der Wohnart (Standard, Deluxe, etc.).
+    private JLabel JLabelVerpflegung;   // Label für die Auswahl der Verpflegungsart (Frühstück, All Inclusive, etc.).
+    private JLabel JLabelAnzahlPerson;  // Label für die Eingabe der Anzahl der Reisenden.
+    private JLabel JLabelSonderwünsche; // Label für die Sonderwünsche-Checkboxen.
+    private JLabel JLabelFirmenname;    // Label für den Firmennamen.
+    private JLabel JLabelHotel;         // Label für die Hotelauswahl.
+
+    // Eingabekomponenten (für die Benutzereingaben)
+    private JComboBox cBoxUrlaubsort;   // Dropdown für die Auswahl des Urlaubsorts.
+    private JComboBox cBoxWohnart;      // Dropdown für die Auswahl der Wohnart.
+    private JComboBox cBoxAllinclusive; // Dropdown für die Auswahl der Verpflegung.
+    private JComboBox comboBox1;        // Dropdown für die Hotelauswahl.
+    private JTextField txtFieldDauer;   // Textfeld für die Eingabe der Reisedauer in Tagen.
+    private JTextField txtFieldAnzahlPersonen; // Textfeld für die Eingabe der Anzahl der Reisenden.
+
+    // Checkboxes (für Sonderwünsche)
+    private JCheckBox SPABereich;       // Checkbox für die Option "SPA-Bereich".
+    private JCheckBox pool;             // Checkbox für die Option "Pool".
+    private JCheckBox meerblick;        // Checkbox für die Option "Meerblick".
+    private JCheckBox terasse;          // Checkbox für die Option "Terrasse".
+
+    // Buttons (für verschiedene Aktionen)
+    private JButton preisBerechnungButton; // Button zum Berechnen des Reisepreises.
+    private JButton buttonSpeichern;       // Button zum Speichern der Reise in die Liste.
+    private JButton buttonListeLoeschen;   // Button zum Löschen der gespeicherten Liste.
+    private JButton buttonReset;           // Button zum Zurücksetzen aller Eingabefelder.
+
+    // TextArea (für die Anzeige gespeicherter Reisen)
+    private JTextArea txtAreaReisespeichern; // Bereich, in dem die Liste der gespeicherten Reisen angezeigt wird.
+
+    // Fehlerlabels (für Validierungs- und Eingabefehler)
+    private JLabel errorLabelPersonen;      // Fehlerlabel für ungültige Eingaben der Personenanzahl.
+    private JLabel errorLabelDauer;         // Fehlerlabel für ungültige Eingaben der Reisedauer.
+    private JLabel errorLabelHotel;         // Fehlerlabel für ungültige oder fehlende Hotelauswahl.
+    private JLabel errorLabelUrlaubsort;    // Fehlerlabel für ungültige oder fehlende Urlaubsort-Auswahl.
+    private JLabel errorLabelWohnart;       // Fehlerlabel für ungültige oder fehlende Wohnart-Auswahl.
+    private JLabel errorLabelVerpflegung;   // Fehlerlabel für ungültige oder fehlende Verpflegungsauswahl.
+
 
     // ArrayList zum Speichern der Reisen
     private ArrayList<String> reiseListe = new ArrayList<>();
@@ -61,7 +78,10 @@ public class Reiseplanung extends JFrame {
         // Fehlerlabels standardmäßig unsichtbar setzen
         errorLabelDauer.setVisible(false);
         errorLabelPersonen.setVisible(false);
-
+        errorLabelHotel.setVisible(false);
+        errorLabelWohnart.setVisible(false);
+        errorLabelVerpflegung.setVisible(false);
+        errorLabelUrlaubsort.setVisible(false);
 
         // Listener für Preisberechnung
         preisBerechnungButton.addActionListener(new ActionListener() {
@@ -121,6 +141,10 @@ public class Reiseplanung extends JFrame {
         // Variablen zur Fehlererfassung
         boolean fehlerInDauer = false;
         boolean fehlerInPersonen = false;
+        boolean fehlerInUrlaubsort = false;
+        boolean fehlerInWohnart = false;
+        boolean fehlerInVerpflegung = false;
+        boolean fehlerInHotel = false;
 
         // Dauer überprüfen
         String dauerText = txtFieldDauer.getText();
@@ -128,7 +152,7 @@ public class Reiseplanung extends JFrame {
             fehlerInDauer = true;
             errorLabelDauer.setVisible(true); // Fehlerlabel für Dauer anzeigen
         } else {
-            errorLabelDauer.setVisible(false); // Änderung: Fehlerlabel bei korrekter Eingabe unsichtbar machen
+            errorLabelDauer.setVisible(false); // Fehlerlabel bei korrekter Eingabe unsichtbar machen
         }
 
         // Personenzahl überprüfen
@@ -137,31 +161,62 @@ public class Reiseplanung extends JFrame {
             fehlerInPersonen = true;
             errorLabelPersonen.setVisible(true); // Fehlerlabel für Personenanzahl anzeigen
         } else {
-            errorLabelPersonen.setVisible(false); // Änderung: Fehlerlabel bei korrekter Eingabe unsichtbar machen
+            errorLabelPersonen.setVisible(false); // Fehlerlabel bei korrekter Eingabe unsichtbar machen
+        }
+
+        // Urlaubsort überprüfen
+        String urlaubsort = (String) cBoxUrlaubsort.getSelectedItem();
+        if (urlaubsort == null || urlaubsort.equals("--Auswählen--")) {
+            fehlerInUrlaubsort = true;
+            errorLabelUrlaubsort.setVisible(true); // Fehlerlabel für Urlaubsort anzeigen
+        } else {
+            errorLabelUrlaubsort.setVisible(false);
+        }
+
+        // Wohnart überprüfen
+        String wohnart = (String) cBoxWohnart.getSelectedItem();
+        if (wohnart == null || wohnart.equals("--Auswählen--")) {
+            fehlerInWohnart = true;
+            errorLabelWohnart.setVisible(true); // Fehlerlabel für Wohnart anzeigen
+        } else {
+            errorLabelWohnart.setVisible(false);
+        }
+
+        // Verpflegung überprüfen
+        String allInclusive = (String) cBoxAllinclusive.getSelectedItem();
+        if (allInclusive == null || allInclusive.equals("--Auswählen--")) {
+            fehlerInVerpflegung = true;
+            errorLabelVerpflegung.setVisible(true); // Fehlerlabel für Verpflegung anzeigen
+        } else {
+            errorLabelVerpflegung.setVisible(false);
+        }
+
+        // Hotel überprüfen
+        String hotel = (String) comboBox1.getSelectedItem();
+        if (hotel == null || hotel.equals("--Auswählen--")) {
+            fehlerInHotel = true;
+            errorLabelHotel.setVisible(true); // Fehlerlabel für Hotel anzeigen
+        } else {
+            errorLabelHotel.setVisible(false);
         }
 
         // Wenn Fehler aufgetreten sind, entsprechende Nachricht anzeigen
-        if (fehlerInDauer && fehlerInPersonen) {
-            JOptionPane.showMessageDialog(this,
-                    "Bitte geben Sie gültige Zahlen für die Dauer und die Personenanzahl ein.",
-                    "Ungültige Eingaben", JOptionPane.WARNING_MESSAGE);
-            return; // Methode verlassen
-        } else if (fehlerInDauer) {
-            JOptionPane.showMessageDialog(this,
-                    "Bitte geben Sie eine gültige ganze Zahl für die Dauer ein.",
-                    "Ungültige Eingabe für Dauer", JOptionPane.WARNING_MESSAGE);
-            return; // Methode verlassen
-        } else if (fehlerInPersonen) {
-            JOptionPane.showMessageDialog(this,
-                    "Bitte geben Sie eine gültige ganze Zahl für die Personenanzahl ein.",
-                    "Ungültige Eingabe für Personenanzahl", JOptionPane.WARNING_MESSAGE);
+        if (fehlerInDauer || fehlerInPersonen || fehlerInUrlaubsort || fehlerInWohnart || fehlerInVerpflegung || fehlerInHotel) {
+            StringBuilder fehlermeldung = new StringBuilder("Bitte beheben Sie die folgenden Fehler:\n");
+            if (fehlerInUrlaubsort) fehlermeldung.append("- Bitte wählen Sie einen Urlaubsort aus.\n");
+            if (fehlerInHotel) fehlermeldung.append("- Bitte wählen Sie ein Hotel aus.\n");
+            if (fehlerInDauer) fehlermeldung.append("- Ungültige Dauer (nur ganze Zahlen erlaubt).\n");
+            if (fehlerInWohnart) fehlermeldung.append("- Bitte wählen Sie eine Wohnart aus.\n");
+            if (fehlerInVerpflegung) fehlermeldung.append("- Bitte wählen Sie eine Verpflegungsoption aus.\n");
+            if (fehlerInPersonen) fehlermeldung.append("- Ungültige Personenanzahl (nur ganze Zahlen erlaubt).\n");
+
+
+            JOptionPane.showMessageDialog(this, fehlermeldung.toString(), "Ungültige Eingaben", JOptionPane.WARNING_MESSAGE);
             return; // Methode verlassen
         }
 
         // Wenn keine Fehler aufgetreten sind, Informationen verarbeiten
         try {
-            String wohnart = (String) cBoxWohnart.getSelectedItem();
-            String allInclusive = (String) cBoxAllinclusive.getSelectedItem();
             int dauer = Integer.parseInt(txtFieldDauer.getText());
             int personen = Integer.parseInt(txtFieldAnzahlPersonen.getText());
 
@@ -177,7 +232,6 @@ public class Reiseplanung extends JFrame {
                     "Ungültige Eingabe", JOptionPane.WARNING_MESSAGE);
         }
     }
-
 
     // Methode zur Berechnung des Preises
     private double berechnePreis(int dauer, int personen, String wohnart, String allInclusive) {
@@ -313,7 +367,11 @@ public class Reiseplanung extends JFrame {
             // Überprüft ob die Liste der Sonderwünsche leer ist
             // Wenn die Liste leer ist, wird "Keine Sonderwünsche" als Standardwert zugewiesen
             // Sonst werden die Sonderwünsche in die Liste hinzugefügt
-            String sonderwuenscheText = sonderwuensche.isEmpty()?"Keine Sonderwünsche":String.join(",",sonderwuensche);
+            // Überprüfen, ob die Liste der Sonderwünsche leer ist
+            String sonderwuenscheText = sonderwuensche.isEmpty()
+                    ? "Keine Sonderwünsche ausgewählt"
+                    : String.join(", ", sonderwuensche);
+
 
             // Preis berechnen
             double preis = berechnePreis(dauer, personen, wohnart, allInclusive);
@@ -328,7 +386,7 @@ public class Reiseplanung extends JFrame {
                             "Dauer: %d Tage\n" +
                             "Personen: %d\n" +
                             "Preis: %.2f €",
-                    urlaubsort, wohnart, hotel, allInclusive, sonderwuensche, dauer, personen, preis);
+                    urlaubsort, wohnart, hotel, allInclusive, sonderwuenscheText , dauer, personen, preis);
 
             // Reiseinformationen in die Liste speichern
             reiseListe.add(reise);

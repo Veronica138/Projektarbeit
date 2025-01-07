@@ -30,6 +30,8 @@ public class Reiseplanung extends JFrame {
     private JLabel errorLabelDauer;
     private JButton buttonReset;
     private JComboBox comboBox1;
+    private JLabel JLabelName;
+    private JLabel JLabelHotel;
 
     // ArrayList zum Speichern der Reisen
     private ArrayList<String> reiseListe = new ArrayList<>();
@@ -185,37 +187,37 @@ public class Reiseplanung extends JFrame {
         String urlaubsort = (String) cBoxUrlaubsort.getSelectedItem();
         switch (urlaubsort) {
             case "Amsterdam":
-                grundpreisProTag = 130.0;
+                grundpreisProTag = 50.0;
                 break;
             case "Barcelona":
-                grundpreisProTag = 130.0;
+                grundpreisProTag = 50.0;
                 break;
             case "Berlin":
-                grundpreisProTag = 100.0;
+                grundpreisProTag = 30.0;
                 break;
             case "Dubai":
-                grundpreisProTag = 200.0;
+                grundpreisProTag = 60.0;
                 break;
             case "London":
-                grundpreisProTag = 175.0;
+                grundpreisProTag = 40.0;
                 break;
             case "Madrid":
-                grundpreisProTag = 130.0;
+                grundpreisProTag = 45.0;
                 break;
             case "Mailand":
-                grundpreisProTag = 135.0;
+                grundpreisProTag = 30.0;
                 break;
             case "München":
-                grundpreisProTag = 115.0;
+                grundpreisProTag = 50.0;
                 break;
             case "New York":
-                grundpreisProTag = 225.0;
+                grundpreisProTag = 60.0;
                 break;
             case "Paris":
-                grundpreisProTag = 180.0;
+                grundpreisProTag = 55.0;
                 break;
             case "Rom":
-                grundpreisProTag = 140.0;
+                grundpreisProTag = 40.0;
                 break;
 
         }

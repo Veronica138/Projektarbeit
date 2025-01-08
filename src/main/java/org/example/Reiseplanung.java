@@ -117,6 +117,8 @@ public class Reiseplanung extends JFrame {
 
                 if (cBoxUrlaubsort.getItemCount() > 0) {
                     cBoxUrlaubsort.setSelectedIndex(0);
+
+                    if (comboBox1)
                 }
                 if (cBoxWohnart.getItemCount() > 0) {
                     cBoxWohnart.setSelectedIndex(0);

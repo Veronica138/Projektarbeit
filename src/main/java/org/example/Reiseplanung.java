@@ -59,7 +59,7 @@ public class Reiseplanung extends JFrame {
 
         setTitle("Reiseplanung");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1200, 800);
+        setSize(1600, 1000);
         setContentPane(JPanel);
         setVisible(true);
         System.out.print(comboBox1.getItemCount());
@@ -405,6 +405,7 @@ public class Reiseplanung extends JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Ein unerwarteter Fehler ist aufgetreten: " + ex.getMessage(),
                     "Fehler", JOptionPane.ERROR_MESSAGE);
+
         }
     }
 }

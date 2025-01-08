@@ -117,8 +117,6 @@ public class Reiseplanung extends JFrame {
 
                 if (cBoxUrlaubsort.getItemCount() > 0) {
                     cBoxUrlaubsort.setSelectedIndex(0);
-
-                    if (comboBox1)
                 }
                 if (cBoxWohnart.getItemCount() > 0) {
                     cBoxWohnart.setSelectedIndex(0);
@@ -126,8 +124,11 @@ public class Reiseplanung extends JFrame {
                 if (cBoxAllinclusive.getItemCount() > 0) {
                     cBoxAllinclusive.setSelectedIndex(0);
                 }
+                if (comboBox1.getItemCount() > 0) {
+                    comboBox1.setSelectedIndex(0);
+                }
 
-                SPABereich.setSelected(false);
+                    SPABereich.setSelected(false);
                 pool.setSelected(false);
                 meerblick.setSelected(false);
                 terasse.setSelected(false);
@@ -137,6 +138,7 @@ public class Reiseplanung extends JFrame {
             }
         });
     }
+
 
 
     // Methode zur Preisberechnung und Anzeige

@@ -63,6 +63,7 @@ public class Reiseplanung extends JFrame {
         setContentPane(JPanel);
         setVisible(true);
         System.out.print(comboBox1.getItemCount());
+        setResizable(false);
 
 
         //Combobox für Hotel erstellt und soll von der Arrayliste die Hotelnamen anzeigen

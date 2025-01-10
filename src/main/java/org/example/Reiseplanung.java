@@ -52,6 +52,7 @@ public class Reiseplanung extends JFrame {
 
 
     // ArrayList zum Speichern der Reisen
+    private ArrayList<Hotel> hotels = new ArrayList<>();
     private ArrayList<String> reiseListe = new ArrayList<>();
 
 
@@ -66,7 +67,7 @@ public class Reiseplanung extends JFrame {
 
 
         //Combobox für Hotel erstellt und soll von der Arrayliste die Hotelnamen anzeigen
-        ArrayList<Hotel> hotels = Hotel.getHotels();
+         hotels = Hotel.getHotels();
         for (Hotel hotel : hotels) {
             this.comboBox1.addItem(hotel.Hotelnamen);
         }
@@ -281,18 +282,13 @@ public class Reiseplanung extends JFrame {
 
         }
         String Hotel = (String) comboBox1.getSelectedItem();
-        switch(Hotel){
-            case "Mercy Hotel":
-                grundpreisProTag += 55.99;
-                break;
-            case "Olive Hotel":
-                grundpreisProTag += 20.99;
-                break;
-            case "Modern Hotel":
-                grundpreisProTag += 60.59;
-                break;
-        }
+        for (Hotel ele: hotels){
+            if(Hotel.equals(ele.Hotelnamen)){
+                grundpreisProTag += ele.HotelPreis;
 
+
+        }
+        }
         // Zuschläge für Wohnart
         switch (wohnart) {
             case "Standard":
@@ -351,7 +347,7 @@ public class Reiseplanung extends JFrame {
         try {
             // Dauer und Personenanzahl prüfen
             String dauerText = txtFieldDauer.getText();
-            int dauer = Integer.parseInt(dauerText);
+            int dauer = Integer.parseInt(dauerText); // Diese Zeile führt aufgrund typumwandlung von String auf int zum programmabruch
             String personenText = txtFieldAnzahlPersonen.getText();
             int personen = Integer.parseInt(personenText);
 

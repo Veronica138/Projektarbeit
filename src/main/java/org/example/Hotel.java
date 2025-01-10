@@ -10,10 +10,11 @@ public class Hotel {
     public Hotel(String auswählen){
         initObjekte();
     }
-    public Hotel (String Hotelnamen, double HotelPreis, boolean AllIclusive){
+    public Hotel (String Hotelnamen, double HotelPreis, boolean AllIclusive ){
         this.Hotelnamen = Hotelnamen;
         this.HotelPreis = HotelPreis;
         this.AllInclusive=AllIclusive;
+
     }
     private void initObjekte(){
         this.Hotelnamen = "Standard Hotel";

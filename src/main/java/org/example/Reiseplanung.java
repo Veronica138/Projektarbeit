@@ -281,6 +281,7 @@ public class Reiseplanung extends JFrame {
                 break;
 
         }
+
         String Hotel = (String) comboBox1.getSelectedItem();
         for (Hotel ele: hotels){
             if(Hotel.equals(ele.Hotelnamen)){

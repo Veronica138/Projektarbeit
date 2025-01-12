@@ -17,15 +17,6 @@
           <text value="Dauer (in Tagen):"/>
         </properties>
       </component>
-      <component id="7d59e" class="javax.swing.JLabel" binding="JLabelWohnart">
-        <constraints>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <font/>
-          <text value="Wohnart:"/>
-        </properties>
-      </component>
       <component id="f5e5a" class="javax.swing.JTextField" binding="txtFieldDauer">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
@@ -133,17 +124,7 @@
           <grid row="16" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="berechne Preis"/>
-        </properties>
-      </component>
-      <component id="2a0ca" class="javax.swing.JCheckBox" binding="terasse">
-        <constraints>
-          <grid row="12" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
-            <preferred-size width="220" height="25"/>
-          </grid>
-        </constraints>
-        <properties>
-          <text value="Terasse"/>
+          <text value="Berechne Preis "/>
         </properties>
       </component>
       <component id="77d4c" class="javax.swing.JCheckBox" binding="pool">
@@ -216,17 +197,6 @@
           </component>
         </children>
       </scrollpane>
-      <component id="ad465" class="javax.swing.JLabel" binding="JLabelFirmenname">
-        <constraints>
-          <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="50" use-parent-layout="false">
-            <minimum-size width="-1" height="5"/>
-          </grid>
-        </constraints>
-        <properties>
-          <font name="Arial Black" size="28" style="2"/>
-          <text value="TravelEase"/>
-        </properties>
-      </component>
       <component id="e98b2" class="javax.swing.JLabel" binding="errorLabelHotel">
         <constraints>
           <grid row="2" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
@@ -302,6 +272,34 @@
         </constraints>
         <properties>
           <text value="SPA Bereich"/>
+        </properties>
+      </component>
+      <component id="ad465" class="javax.swing.JLabel" binding="JLabelFirmenname">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="25" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Arial Black" size="28" style="2"/>
+          <text value="TravelEase.&#10;"/>
+        </properties>
+      </component>
+      <component id="2a0ca" class="javax.swing.JCheckBox" binding="terasse">
+        <constraints>
+          <grid row="12" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="220" height="25"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value="Terasse"/>
+        </properties>
+      </component>
+      <component id="7d59e" class="javax.swing.JLabel" binding="JLabelWohnart">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font/>
+          <text value="Wohnart:"/>
         </properties>
       </component>
     </children>

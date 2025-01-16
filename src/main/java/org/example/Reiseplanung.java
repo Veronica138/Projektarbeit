@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Reiseplanung extends JFrame {
     // Hauptkomponenten des UI
@@ -129,13 +130,17 @@ public class Reiseplanung extends JFrame {
                     comboBox1.setSelectedIndex(0);
                 }
 
-                    SPABereich.setSelected(false);
+                SPABereich.setSelected(false);
                 pool.setSelected(false);
                 meerblick.setSelected(false);
                 terasse.setSelected(false);
 
                 errorLabelDauer.setVisible(false);
                 errorLabelPersonen.setVisible(false);
+                errorLabelHotel.setVisible(false);
+                errorLabelVerpflegung.setVisible(false);
+                errorLabelUrlaubsort.setVisible(false);
+                errorLabelWohnart.setVisible(false);
             }
         });
     }
@@ -228,6 +233,7 @@ public class Reiseplanung extends JFrame {
 
             // Berechnung des Preises
             double preis = berechnePreis(dauer, personen, wohnart, allInclusive);
+
 
             // Zeige den berechneten Preis in einem Dialogfeld
             JOptionPane.showMessageDialog(this, "Ihre ausgewählte Reise kostet " + String.format("%.2f €", preis),

@@ -96,9 +96,7 @@
       </component>
       <component id="d9140" class="javax.swing.JTextField" binding="txtFieldAnzahlPersonen">
         <constraints>
-          <grid row="14" column="1" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="34"/>
-          </grid>
+          <grid row="14" column="1" row-span="1" col-span="6" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
       </component>
@@ -140,6 +138,7 @@
           <grid row="3" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font size="10"/>
           <foreground color="-65536"/>
           <text value="Fehler "/>
         </properties>
@@ -151,6 +150,7 @@
           </grid>
         </constraints>
         <properties>
+          <font size="10"/>
           <foreground color="-65536"/>
           <labelFor value="d9140"/>
           <text value="Fehler "/>
@@ -202,6 +202,7 @@
           <grid row="2" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font size="10"/>
           <foreground color="-65536"/>
           <text value="Fehler "/>
         </properties>
@@ -211,6 +212,7 @@
           <grid row="1" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font size="10"/>
           <foreground color="-65536"/>
           <text value="Fehler "/>
         </properties>
@@ -220,6 +222,7 @@
           <grid row="5" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font size="10"/>
           <foreground color="-65536"/>
           <text value="Fehler "/>
         </properties>
@@ -229,6 +232,7 @@
           <grid row="8" column="8" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font size="10"/>
           <foreground color="-65536"/>
           <text value="Fehler "/>
         </properties>
@@ -252,9 +256,7 @@
       </component>
       <component id="798ff" class="javax.swing.JButton" binding="buttonSpeichern">
         <constraints>
-          <grid row="16" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="192" height="34"/>
-          </grid>
+          <grid row="16" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Reise speichern"/>

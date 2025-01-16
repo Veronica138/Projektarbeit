@@ -10,3 +10,4 @@ In der Reiseliste kann man, mithilfe unseres Buttons "Reise speichern", geplante
 
 Die eingebauten Fehlermeldungen sollen ungültige Eingaben verhindern. Am Bildschirm erscheint beispielsweise eine Fehlermeldung, wenn nicht alle Optionen ausgewählt wurden und vergessen wurde z.B. ein Reiseziel auszusuchen.
 
+<img width="775" alt="UML- Diagramm" src="https://github.com/user-attachments/assets/e9a00575-a86c-4aae-bb49-520192451635" />

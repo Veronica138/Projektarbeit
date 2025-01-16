@@ -1,14 +1,33 @@
 Beschreibung:
 Unser Programm TravelEase soll der Planung,Organisation und Speicherung von spezifischen Reisen dienen.
+Nutzer können Reiseziele auswählen, Sonderwünsche angeben, Preise berechnen und ihre Reisen speichern.
 
-Funktion:
-Mithilfe der Benutzeroberfläche kann man Aspekte der Reise bestimmen, wie z.B. die Personenanzahl der Reisenden oder das Land, wohin man später reisen möchte.
-
-Der Button "Preis Berechnung" gibt den Gesamtpreis an, den das Programm durch die Auswahl der Aspekte zusammenrechnet.
-
-In der Reiseliste kann man, mithilfe unseres Buttons "Reise speichern", geplante Reisen speichern und diese werden am Bildschirm angezeigt.
-
-Die eingebauten Fehlermeldungen sollen ungültige Eingaben verhindern. Am Bildschirm erscheint beispielsweise eine Fehlermeldung, wenn nicht alle Optionen ausgewählt wurden und vergessen wurde z.B. ein Reiseziel auszusuchen.
+Funktionen
+• Reiseplanung: Auswahl von Urlaubsort, Hotel, Dauer, Wohnort und Verpflegungsoptionen.
+• Sonderwünsche: Möglichkeit, spezielle Anforderungen wie Meerblick, SPA-Bereich, Terrasse oder Pool hinzuzufügen.
+• Preisberechnung: Berechnung der Gesamtkosten basierend auf den gewählten Parametern (z. B. Dauer der Reise und Anzahl der Personen).
+• Reisespeicherung: Speichern von geplanten Reisen zur späteren Übersicht.
+• Benutzeroberfläche: Intuitive und übersichtliche Eingabemasken mit Dropdown-Menüs, Checkboxen und Buttons.
+• Fehlerbehandlung: Zeigt Fehlermeldungen bei ungültigen Eingaben in allen Bereichen an.
+Aufbau der Anwendung
+• Main.java: Startpunkt der Anwendung.
+• Reiseplanung.java: Enthält die Benutzeroberfläche und die Hauptlogik.
+• Hotel.java: Importiert die Hotels in die GUI
+Verwendung
+1. Starten der Anwendung:
+o Öffnen Sie das Projekt in IntelliJ oder einer ähnlichen IDE und führen Sie die main-Klasse aus.
+2. Reise planen:
+o Wählen Sie über die Dropdown-Menüs Urlaubsort, Hotel und Verpflegung aus.
+o Geben Sie die Dauer der Reise (in Tagen) und die Anzahl der Personen ein.
+o Fügen Sie Sonderwünsche, falls erforderlich hinzu (z. B. Meerblick, Pool).
+3. Preis berechnen:
+o Klicken Sie auf den Button "Berechne Preis", um die Gesamtkosten für die geplante Reise zu sehen.
+4. Reise speichern:
+o Klicken Sie auf "Reise speichern", um Ihre Planung in der Liste zu sichern oder mit einer anderen Reise zu vergleichen
+5. Zurücksetzen:
+o Mit dem Button "Reset" können alle Eingabefelder geleert werden.
+Mitwirkende
+Clarissa Makur, Melina Ehl, Daniel Rapp & Veronica Kyrantzi
 
 
 

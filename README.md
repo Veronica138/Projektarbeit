@@ -1,4 +1,4 @@
-Beschreibung:
+TravelEase
 
 Unser Programm TravelEase soll der Planung,Organisation und Speicherung von spezifischen Reisen dienen.
 Nutzer können Reiseziele auswählen, Sonderwünsche angeben, Preise berechnen und ihre Reisen speichern.

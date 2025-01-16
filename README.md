@@ -4,7 +4,7 @@ Unser Programm TravelEase soll der Planung,Organisation und Speicherung von spez
 Nutzer können Reiseziele auswählen, Sonderwünsche angeben, Preise berechnen und ihre Reisen speichern.
 
 
-Funktionen
+Funktionen:
 
   • Reiseplanung: Auswahl von Urlaubsort, Hotel, Dauer, Wohnort und Verpflegungsoptionen.
 
@@ -19,20 +19,20 @@ Funktionen
   • Fehlerbehandlung: Zeigt Fehlermeldungen bei ungültigen Eingaben in allen Bereichen an.
 
 
-Aufbau der Anwendung
+Aufbau der Anwendung:
 
   • Main.java: Startpunkt der Anwendung.
 
   • Reiseplanung.java: Enthält die Benutzeroberfläche und die Hauptlogik.
 
   • Hotel.java: Importiert die Hotels in die GUI
+  
 
 Verwendung:
 
 1. Starten der Anwendung:
    
     o Öffnen Sie das Projekt in IntelliJ oder einer ähnlichen IDE und führen Sie die main-Klasse aus.
-
 
 2. Reise planen:
    
